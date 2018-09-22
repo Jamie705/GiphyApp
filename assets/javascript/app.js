@@ -4,6 +4,7 @@ $(document).ready(function () {
 
 // Creates list/array of topics
 var topics = ["dogs", "games", "cartoons"];
+var userInput = $("#giphy-input").val();
 
 genButtons();
 
@@ -31,69 +32,85 @@ genButtons();
     }
 
     //Generate image for buttons
-    function genImage(params) {  
-        $('button').on("click", function (event) {
-            event.stopPropagation();          
-            userInput = $(this).attr("data-name");
-            var results = response.data;
 
-            for (var j = 0; j < response.length; j++) {
-                //naming a new div giphyDiv
-                var giphyDiv = $("<div>");
-                //variable for rating and title
-                var title = results[j].title;
-                    var rating = results[j].rating;
-                // creating p tag for rating and title
-                var pTitle = $("<p>").text("Title: " + title);
-                var pRating = $("<p>").text("Rating: " + rating);
-
-                var giphyImage = $("<img>");
-                giphyImage.attr("src", results[j].images.fixed_height.url);
-
-                giphyDiv.prepend(pTitle);
-                giphyDiv.append(pRating);
-                giphyDiv.prepend(giphyImage);
-
-                $("#giphyPix").prepend(giphyDiv);
-                
-            }
-        });     
-    }
    // This function handles events where the add giphy button is clicked
     $('#find-giphy').on("click", function (event) {
         //stop bubbling
-        event.stopPropagation();
+        // event.stopPropagation();
         // event.preventDefault() prevents submit button from trying to send a form.
         // Using a submit button instead of a regular button allows the user to hit
         // "Enter" instead of clicking the button if desired
         event.preventDefault();
         //get user input
-        var userInput = $("#giphy-input").val().trim();
+        userInput = $("#giphy-input").val();
         //pushes input to giphy list
         topics.push(userInput);
         //generates buttons
         genButtons();
   
+       
+    
+        $("button").on("click", function (event) {
+            //stop bubbling
+            // event.stopPropagation();
+            // event.preventDefault() prevents submit button from trying to send a form.
+            // Using a submit button instead of a regular button allows the user to hit
+            // "Enter" instead of clicking the button if desired
+            event.preventDefault();
+        //getting data-name from button
+            var userInput = $(this).attr("data-name");   
         
-        //api key
-        var APIkey = "UXl9FNp2rHeOY8b1STlKb8DjvH1PvOcz";
+            //api key
+            var APIkey = "UXl9FNp2rHeOY8b1STlKb8DjvH1PvOcz";
 
-        // Example queryURL for Giphy API
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInput + " &api_key=" + APIkey + "&limit=10";
+            // Example queryURL for Giphy API
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInput + "&api_key=" + APIkey + "&limit=10";
 
-        
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-            .then(function (response) {
-                                     
-                
-                //catch errors 
-                }).catch(function (error) {
-                console.log('ERROR', error); 
-                                          
-            });
+        // Performing an AJAX request with the queryURL 
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                .then(function (response) {
+                    console.log(queryURL);
+                    console.log(response);
+                    console.log(response.data[0].images.fixed_height.url);
+                    // (this is necessary otherwise we will have repeat buttons)
+                    $("#giphyPix").empty();
+                    var results = response.data;
+
+                    for (var j = 0; j < results.length; j++) {
+                        
+                        //naming a new div giphyDiv
+                        var giphyDiv = $("<div>");
+
+                        //variable for rating and title
+                        var title = results[j].title;
+                            console.log(results[j].title);
+
+                        var rating = results[j].rating;
+                            console.log(results[j].rating);
+
+                        // creating p tag for rating and title
+                        var pTitle = $("<p>").text("Title: " + title);
+                        var pRating = $("<p>").text("Rating: " + rating);
+
+                        var giphyImage = $("<img>");
+                        giphyImage.attr("src", results[j].images.fixed_height.url);
+                            console.log(results[j].images.fixed_height);
+
+                        giphyDiv.append(pTitle);
+                        giphyDiv.append(pRating);
+                        giphyDiv.append(giphyImage);
+
+                        $("#giphyPix").prepend(giphyDiv);
+                            //catch errors 
+                    // }).catch(function (error) {
+                    // console.log('ERROR', error); 
+                    
+                    }
+                });
+        });
             
     });
 });
