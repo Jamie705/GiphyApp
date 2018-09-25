@@ -4,7 +4,6 @@ $(document).ready(function () {
 
     // Creates list/array of topics
     var topics = ["dogs", "games", "cartoons"];
-
     //funtion to create buttons
     function genButtons (params) {
         // (this is necessary otherwise we will have repeat buttons)
@@ -28,22 +27,24 @@ $(document).ready(function () {
     //generates butons on the list
     genButtons();
 
-   //This  handles events where the add giphy button is clicked
-    $('#find-giphy').on("click", function (event) {
-        //stop bubbling
-        // event.stopPropagation();
-        // event.preventDefault() prevents submit button from trying to send a form.
-        // Using a submit button instead of a regular button allows the user to hit
-        // "Enter" instead of clicking the button if desired
-        event.preventDefault();
-        //get user input
-        inputFeild = $("#giphy-input").val().trim();
-        //pushes input to giphy list
-        topics.push(inputFeild);
-        //generates buttons
-        genButtons();
-       
-        // This handles events where the giphy images are generated
+//user input gets pushed into array
+$('#find-giphy').on("click", function (event) {
+    //stop bubbling
+    // event.stopPropagation();
+    // event.preventDefault() prevents submit button from trying to send a form.
+    // Using a submit button instead of a regular button allows the user to hit
+    // "Enter" instead of clicking the button if desired
+    event.preventDefault();
+    //get user input
+    userInput = $("#giphy-input").val().trim();
+    $("#giphy-input").val("");
+
+    //pushes input to giphy list
+    topics.push(userInput);
+    //generates buttons
+    genButtons();
+
+        //This  handles events where the add giphy button is clicked   
         $("button").on("click", function (event) {
             //stop bubbling
             // event.stopPropagation();
@@ -51,16 +52,16 @@ $(document).ready(function () {
             // Using a submit button instead of a regular button allows the user to hit
             // "Enter" instead of clicking the button if desired
             event.preventDefault();
-
+                    
             //getting data-name from button
-            var userInput = $(this).attr("data-name");   
-        
+            userInput = $(this).attr("data-name");   
+            
             //api key
             var APIkey = "UXl9FNp2rHeOY8b1STlKb8DjvH1PvOcz";
 
             // QueryURL for Giphy API
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInput + "&api_key=" + APIkey + "&limit=10";
-        
+                
             // Performing an AJAX request with the queryURL 
             $.ajax({
                 url: queryURL,
@@ -69,16 +70,16 @@ $(document).ready(function () {
                 .then(function (response) {
                     console.log(queryURL);
                     console.log(response);
-                             //catch errors 
+                                //catch errors 
                     // }).catch(function (error) {
                     // console.log('ERROR', error); 
-                     
+    
                     // emtpy giphyPix before a new set is placed
-                    $("#giphyPix").empty();
+                    // $("#giphyPix").empty();
                     
                     //var to hold query response
                     var results = response.data;
-
+                    
                     //Loop through response and get all api results
                     for (var j = 0; j < results.length; j++) {
                         
@@ -116,10 +117,12 @@ $(document).ready(function () {
                         giphyDiv.append(pRating);
                         //send still image to html 
                         giphyDiv.append(gifImage);
-                       
+                    
                         //put giphy div in at the top of giphyPix div
                         $("#giphyPix").prepend(giphyDiv);
-                
+
+                    }
+                    
                         //on click for gif images
                         $('.gif').on("click", function (event) {
                             //var for data-state
@@ -135,10 +138,10 @@ $(document).ready(function () {
                                 $(this).attr("data-state", "still");
                             }
                             
-                        });
-                    }
-                });
+                        });        
+                  
+            });    
+             
         });
-            
-    });
+    });        
 });

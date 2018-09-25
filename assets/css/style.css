@@ -1,0 +1,34 @@
+body {
+    background-image: url(../images/wallhaven695365.jpg);
+    background-repeat: inherit;
+    font-family:  'Luckiest Guy', cursive,arial;
+    text-transform: capitalize;
+    color: darkblue;
+    font-size: larger;
+    margin: 60px;
+}
+
+.gif, p {
+    margin: 15px;
+    padding: 10px;
+}
+.giphyButton, #find-giphy {
+    background-color: rgb(245, 239, 1);
+    color: rgb(204, 13, 13);
+    border-radius: 10px;
+    margin-left: 25px;
+    padding:15px 20px;
+}
+#find-giphy {
+    margin-left:10px 
+}
+
+h1 {
+    font-size: 60px;
+    margin: 15px;
+}
+label,#giphy-input {
+    margin-bottom: .5rem;
+    margin: 15px;
+    font-size: x-large;
+}
