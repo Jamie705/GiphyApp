@@ -12,21 +12,33 @@ body {
     margin: 15px;
     padding: 10px;
 }
-.giphyButton, #find-giphy {
+.giphyButton {
     background-color: rgb(245, 239, 1);
     color: rgb(204, 13, 13);
     border-radius: 10px;
     margin-left: 25px;
+    margin-top: 15px;
     padding:15px 20px;
 }
 #find-giphy {
-    margin-left:10px 
+    margin-left:10px;
+    border-radius: 10px;
+    background-color: rgb(204, 13, 13);
+    color: rgb(245, 239, 1);
+    border-radius: 10px;
+    padding:15px 20px; 
 }
 
 h1 {
     font-size: 60px;
     margin: 15px;
 }
+
+h2 {
+    font-size: 30px;
+    margin: 15px;
+}
+
 label,#giphy-input {
     margin-bottom: .5rem;
     margin: 15px;

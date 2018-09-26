@@ -18,28 +18,29 @@
 <body>
     <div class="container">
         <div class="row col-12">
-        <h1> The Giphy App </h1>
-
+        <h1> The Giphy App with ...</h1>
         </div>
-        <div class="row col-8">
+        <h2>Best Cartoon Characters Ever!</h2>
+        
+        <div class="row col-10">
             <div id="giphyBtn" class="row"> 
                 <!-- Button are added here -->
                 <!-- <button class="giphyButton" data-name="dogs">dogs</button>
                 <button class="giphyButton" data-name="games">games</button>
                 <button class="giphyButton" data-name="cartoons">cartoons</button>  -->
-                </div>    
-            </div>        
-            
-            <div class="row col-8">
+            </div>    
+        </div>        
+                
+            <div class="row col-10">
             <!--form starts here -->
                 <div id="formDiv">
-                    <form id="giphy-form">
+                    <form id="giphy-form" method="POST">
                         <label for="giphy-input">Find a Giphy: </label>
-                        <input type="text" id="giphy-input">
+                        <input type="text" id="giphy-input" placeholder="Cartoons" required>
                         <br>
                     
                         <!-- Button triggers new button  -->
-                        <input id="find-giphy" type="submit" value="Giphy Search">
+                        <input id="find-giphy" type="submit" value="Giphy Search" >
                     </form>
                 </div> 
             </div>      
