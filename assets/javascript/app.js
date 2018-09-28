@@ -3,7 +3,7 @@
 $(document).ready(function () {
 
     // Creates list/array of topics
-var topics = ["Daffy", "Mickey", "Bart", "Elmer", "Roadrunner", "Goofy", "Sponge Bob", "Bugs Bunny", "Sylvester", "Scooby", "Tweety", "Taz"];
+var topics = ["daffy", "mickey", "bart", "elmer", "roadrunner", "goofy", "sponge bob", "bugs bunny", "sylvester", "scooby", "tweety", "taz"];
 var userInput;
 
 //funtion to create buttons
@@ -38,25 +38,31 @@ $('#find-giphy').on("click", function (event) {
     // "Enter" instead of clicking the button if desired
     event.preventDefault();
     //get user input
-    userInput = $("#giphy-input").val().trim();
-     //loop did not work for index of array or char only       
-    // if (userInput.indexOf(topics) >= 0){
-            //     alert("Button already exists. Add another button");
-            //     return false;
-            // }
-            // else if (event.keyCode >= 65 && event.keyCode <= 90) {
-            //     console.log("Input Letters only");
-            // }
-            if (userInput.length <= 0){
-                console.log("Don't leave blank.")
-                return false;
-            }else{
-                //pushes input to giphy list
-                topics.push(userInput);
-                $("#giphy-input").val("");
-            }
+    userInput = $("#giphy-input").val().trim().toLowerCase();
+    // check for blank
+    if (userInput.length <= 0){
+    console.log("Don't leave me blank.")
+    return false;
+    }
+   
+    //search for existing buttons      
+    else if (topics.indexOf(userInput) === -1){
+        //pushes input to giphy list
+        topics.push(userInput);
+        console.log(topics);
+        $("#giphy-input").val("");
         
-    
+    }
+    //check for only letters and numbers ***This does not work
+    else if (event.keyCode >= 65 && event.keyCode <= 90) {
+        console.log("Input Letters only");
+    }
+    // button already exists
+    else{
+        console.log("Button already exists")
+        return false;
+    }
+        
     //generates buttons
     genButtons();
 }); 
