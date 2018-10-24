@@ -79,7 +79,7 @@ $('#find-giphy').on("click", function (event) {
             userInput = $(this).attr("data-name");   
             
             //api key
-
+        var APIkey = "UXl9FNp2rHeOY8b1STlKb8DjvH1PvOcz";
             // QueryURL for Giphy API
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInput + "&api_key=" + APIkey + "&limit=10";
                 
