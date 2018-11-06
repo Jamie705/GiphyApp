@@ -1,5 +1,6 @@
 // alert("connected");
 
+
 $(document).ready(function () {
 
     // Creates list/array of topics
@@ -31,9 +32,7 @@ var userInput;
 
 //user input gets pushed into array
 $('#find-giphy').on("click", function (event) {
-    //stop bubbling
-    // event.stopPropagation();
-    // event.preventDefault() prevents submit button from trying to send a form.
+
     // Using a submit button instead of a regular button allows the user to hit
     // "Enter" instead of clicking the button if desired
     event.preventDefault();
@@ -68,18 +67,12 @@ $('#find-giphy').on("click", function (event) {
 }); 
         //This  handles events where the add giphy button is clicked   
     $("#giphyBtn").on("click", "button", function (event) {
-            //stop bubbling
-            // event.stopPropagation();
-            // event.preventDefault() prevents submit button from trying to send a form.
-            // Using a submit button instead of a regular button allows the user to hit
             // "Enter" instead of clicking the button if desired
             event.preventDefault();
                     
             //getting data-name from button
             userInput = $(this).attr("data-name");   
             
-            //api key
-        var APIkey = "UXl9FNp2rHeOY8b1STlKb8DjvH1PvOcz";
             // QueryURL for Giphy API
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userInput + "&api_key=" + APIkey + "&limit=10";
                 
@@ -91,10 +84,7 @@ $('#find-giphy').on("click", function (event) {
                 .then(function (response) {
                     console.log(queryURL);
                     console.log(response);
-                                //catch errors 
-                    // }).catch(function (error) {
-                    // console.log('ERROR', error); 
-    
+
                     // emtpy giphyPix before a new set is placed
                     // $("#giphyPix").empty();
                     
