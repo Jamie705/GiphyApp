@@ -60,7 +60,7 @@ typings/
 # next.js build output
 .next
 
-node_modules
+# keys and apple 
 .DS_Store
-.env
 keys.js
+mykeys.js
