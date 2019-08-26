@@ -63,4 +63,4 @@ typings/
 # keys and apple 
 .DS_Store
 keys.js
-mykeys.js
+myKeys.js
